@@ -1,0 +1,33 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="i18n" location="jira-boolean-field-type"/>
+
+    <!-- add our web resources -->
+    <web-resource key="jira-boolean-field-type-resources" name="jira-boolean-field-type Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+
+        <resource type="download" name="jira-boolean-field-type.css" location="/css/jira-boolean-field-type.css"/>
+        <resource type="download" name="jira-boolean-field-type.js" location="/js/jira-boolean-field-type.js"/>
+        <resource type="download" name="images/" location="/images"/>
+
+        <context>jira-boolean-field-type</context>
+    </web-resource>
+
+    <customfield-type name="Boolean Field" i18n-name-key="boolean-field.name" key="boolean-fld"
+                      class="com.ephemeralin.jira.plugins.customfields.BooleanField">
+        <description>Custom boolean type field</description>
+        <resource name="view" type="velocity" location="/templates/view.vm"/>
+        <resource name="edit" type="velocity" location="/templates/edit.vm"/>
+        <!--        <resource name="column-view" type="velocity" location="templates/view.vm"/>-->
+        <resource name="xml" type="velocity" location="templates/plugins/fields/xml/xml-basictext.vm"/>
+    </customfield-type>
+
+</atlassian-plugin>
